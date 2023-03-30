@@ -3,12 +3,8 @@ package co.develhope.customqueries1.Service;
 import co.develhope.customqueries1.entities.Flight;
 import co.develhope.customqueries1.entities.FlightStatus;
 import co.develhope.customqueries1.repositories.FlightRepository;
-import org.hibernate.engine.spi.Status;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Random;
@@ -34,8 +30,8 @@ public class FlightService {
     }
 
 
-    public void provisioning (){
-        for (int i=0;i<50;i++) {
+    public void provisioning() {
+        for (int i = 0; i < 50; i++) {
             Flight flight = new Flight();
             flight.setDescription(generateString());
             flight.setFromAirport(generateString());
@@ -45,7 +41,29 @@ public class FlightService {
             flightRepository.save(flight);
         }
     }
-    public List<Flight> getAllFlight(){
+
+    public List<Flight> getAllFlight() {
         return flightRepository.findAll();
     }
+
+    public void provisioning2() {
+        for (int i = 0; i < 100; i++) {
+            Flight flight2 = new Flight();
+            flight2.setDescription(generateString());
+            flight2.setFromAirport(generateString());
+            flight2.setToAirport(generateString());
+            flight2.setStatus(FlightStatus.random());
+            flightRepository.save(flight2);
+        }
+    }
+    public List<Flight> getAllByStatusOntime(){
+
+        return flightRepository.getAllByStatus(FlightStatus.ONTIME);
+    }
+
+    public List<Flight> getAllByStatus(FlightStatus p1,FlightStatus p2){
+        return  flightRepository.findAllByStatus( p1, p2);
+    }
+
+
 }
