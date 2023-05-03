@@ -15,8 +15,8 @@ public class FlightService {
     private FlightRepository flightRepository;
 
     public String generateString() {
-        int leftLimit = 48; // numeral '0'
-        int rightLimit = 122; // letter 'z'
+        int leftLimit = 38;
+        int rightLimit = 122;
         int targetStringLength = 10;
         Random random = new Random();
 

@@ -17,8 +17,7 @@ public class Flight {
     @Enumerated(EnumType.STRING)
     private FlightStatus status;
 
-    private String prova1;
-    private String prova2;
+
 
 
     public Flight() {
